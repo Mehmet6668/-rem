@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İrem'e Özel 💕</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #FFF0F5; /* Pembe-Beyaz tonu */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Arka plan süslemeleri */
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 182, 193, 0.4);
+            animation: float 6s infinite ease-in-out;
+            z-index: 1;
+        }
+        .circle.one { width: 300px; height: 300px; top: -100px; left: -100px; }
+        .circle.two { width: 200px; height: 200px; bottom: -50px; right: -50px; background: rgba(0, 43, 91, 0.1); }
+
+        .card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 43, 91, 0.15);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            border: 3px solid #002B5B; /* Lacivert kenarlık */
+            z-index: 10;
+            position: relative;
+        }
+
+        h1 {
+            color: #002B5B; /* Lacivert */
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+
+        p.sub {
+            color: #FF69B4; /* Pembe */
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+
+        .word-display {
+            min-height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            color: #002B5B;
+            font-weight: bold;
+            margin-bottom: 30px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #FFF5F7;
+            border: 1px dashed #FF69B4;
+            transition: all 0.3s ease;
+        }
+
+        button {
+            background-color: #FF69B4; /* Pembe */
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #002B5B; /* Üzerine gelince Lacivert */
+            box-shadow: 0 5px 15px rgba(0, 43, 91, 0.4);
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="circle one"></div>
+    <div class="circle two"></div>
+
+    <div class="card">
+        <h1>İrem'im ✨</h1>
+        <p class="sub">Sana bir mesajım var...</p>
+        
+        <div class="word-display" id="wordBox">
+            Butona tıkla ve gör! 💕
+        </div>
+
+        <button onclick="changeWord()">Tıkla Bakalım!</button>
+    </div>
+
+    <script>
+        const words = [
+            "Benim canım bitanem!",
+            "Dünyalar tatlısı bir eşşek!",
+            "Seni çok seviyorum aşkım!",
+            "Tombiş yanaklı sıpa seni!",
+            "Yerim seni minik enik!",
+            "İyi ki hayatımdasın bitanem!",
+            "Dünyanın en tatlı eşşeği kimmiş acaba?",
+            "Kalbimin sahibi aşkım...",
+            "Yaramaz sıpa, yine ne karıştırıyorsun?",
+            "Gözlerimin nuru, canım enik!",
+            "Sonsuza kadar benimle kal aşkım!",
+            "Bazen tam bir eşşek oluyorsun ama çok tatlısın!",
+            "Benim uykucu sıpam!",
+            "Dünyanın en güzel bitanesi!"
+        ];
+
+        let lastIndex = -1;
+
+        function changeWord() {
+            const box = document.getElementById('wordBox');
+            let randomIndex;
+            
+            // Üst üste aynı kelimenin gelmesini engelleme
+            do {
+                randomIndex = Math.floor(Math.random() * words.length);
+            } while (randomIndex === lastIndex);
+            
+            lastIndex = randomIndex;
+            
+            // Küçük bir efektle değiştirme
+            box.style.opacity = 0;
+            box.style.transform = "scale(0.9)";
+            
+            setTimeout(() => {
+                box.innerText = words[randomIndex];
+                box.style.opacity = 1;
+                box.style.transform = "scale(1)";
+            }, 200);
+        }
+    </script>
+</body>
+</html>
